@@ -3,60 +3,49 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main_money"
-    android:layout_width="340dp"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="24dp"
-    android:layout_marginEnd="24dp"
     android:layout_marginStart="24dp"
+    android:layout_marginEnd="24dp"
+    android:layout_marginTop="24dp"
     android:orientation="vertical"
-    tools:context=".fragment_money">
+    tools:context=".money.MoneyFragment">
 
-        <LinearLayout
-            android:id="@+id/header_information"
-            android:layout_width="match_parent"
+    <LinearLayout
+        android:id="@+id/header_bg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_imageProfile"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/image_profile"/>
+
+        <TextView
+            android:layout_width="264dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:text="Home"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/montserrat_bold"
+            android:layout_gravity="center"
+            android:textAlignment="center"/>
 
-            <ImageView
-                android:id="@+id/burger"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_burger"/>
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_notification"
+            android:layout_gravity="center"/>
 
-            <TextView
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:text="@string/money"
-                android:textSize="28sp"
-                android:textStyle="bold"
-                android:textAlignment="center"
-                android:layout_gravity="center"
-                android:layout_marginStart="28dp"
-                android:layout_marginEnd="24dp"
-                android:fontFamily="@font/montserrat_bold"
-                android:textColor="@color/black" />
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/iv_picProfile"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/image_profile"/>
-
-        </LinearLayout>
-
-        <View
-            android:id="@+id/line"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="15dp"
-            android:background="@color/black"/>
+    </LinearLayout>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cv_cardInformation"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="16dp"
             android:backgroundTint="@color/primary"
             app:cardCornerRadius="12dp">
 
@@ -109,17 +98,20 @@
 
         </androidx.cardview.widget.CardView>
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tl_transaction"
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/tab_background"
-        app:tabIndicator="@null"
-        app:tabGravity="fill"
-        app:tabMode="fixed"
-        app:tabTextColor="@color/white"
-        android:padding="4dp">
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tl_transaction"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/tab_background"
+            app:tabSelectedTextColor="@color/white"
+            app:tabIndicatorFullWidth="true"
+            app:tabIndicator="@drawable/tab_indicator"
+            app:tabIndicatorColor="@color/primary"
+            app:tabIndicatorGravity="center"
+            app:tabGravity="fill"
+            app:tabMode="fixed"
+            app:tabTextColor="@color/white">
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
@@ -133,10 +125,10 @@
 
     </com.google.android.material.tabs.TabLayout>
 
-
-    <androidx.viewpager2.widget.ViewPager2
+<androidx.viewpager2.widget.ViewPager2
         android:id="@+id/vp_transactions"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent"
+        android:layout_marginTop="12dp"/>
 
 </LinearLayout>

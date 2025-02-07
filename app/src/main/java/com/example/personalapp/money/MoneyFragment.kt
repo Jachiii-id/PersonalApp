@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.viewpager2.widget.ViewPager2
 import com.example.personalapp.R
 import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 
 class MoneyFragment : Fragment() {
 
@@ -17,38 +18,43 @@ class MoneyFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_money, container, false)
 
-//        val fragmentList = arrayListOf<Fragment>(
-//            IncomeTransaction(),
-//            OutcomeTransaction()
-//        )
-//
-//        val adapter = TransactionAdapter(
-//            fragmentList,
-//            requireActivity().supportFragmentManager,
-//            lifecycle
-//        )
-//
-//        val viewPager = view.findViewById<ViewPager2>(R.id.vp_transactions)
-//
-//        viewPager.adapter = adapter
-//        val tab = view.findViewById<TabLayout>(R.id.tl_transaction)
-//
-//        tab.isAttachedToWindow(viewPager)
+        val fragmentList = arrayListOf(
+            IncomeTransaction(),
+            OutcomeTransaction()
+        )
 
+        val adapter = TransactionAdapter(
+            fragmentList,
+            requireActivity().supportFragmentManager,
+            lifecycle
+        )
+
+        val viewPager = view.findViewById<ViewPager2>(R.id.vp_transactions)
         val tabLayout = view.findViewById<TabLayout>(R.id.tl_transaction)
 
-        tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
+        viewPager.adapter = adapter
+
+        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+            tab.text = if (position == 0) "Income" else "Outcome"
+        }.attach()
+
+        // Memastikan indikator aktif diterapkan dengan benar
+        tabLayout.setSelectedTabIndicator(R.drawable.tab_indicator)
+
+        tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
-                tab.view.setBackgroundResource(R.drawable.active_tab_background)
+                println("Tab ${tab.text} selected")
             }
 
-            override fun onTabUnselected(tab: TabLayout.Tab?) {
-                tab.view.setBackgroundResource(android.R.color.transparent)
+            override fun onTabUnselected(tab: TabLayout.Tab) {
+                println("Tab ${tab.text} unselected")
             }
 
-            override fun onTabReselected(tab: TabLayout.Tab) {}
+            override fun onTabReselected(tab: TabLayout.Tab) {
+                println("Tab ${tab.text} reselected")
+            }
         })
 
+        return view
     }
-
 }

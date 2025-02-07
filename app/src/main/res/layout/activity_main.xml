@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
@@ -11,27 +10,27 @@
     <FrameLayout
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"/>
 
-    </FrameLayout>
-
+    <!-- BottomAppBar -->
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottomAppBar"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:backgroundTint="@color/primary"
         app:fabAlignmentMode="center"
         app:fabAnchorMode="cradle"
         app:fabCradleMargin="20dp"
         app:fabCradleVerticalOffset="4dp"
-        app:fabCradleRoundedCornerRadius="16dp" />
+        app:fabCradleRoundedCornerRadius="16dp"/>
 
+    <!-- FloatingActionButton di tengah -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_margin="70dp"
+        android:layout_margin="50dp"
         android:backgroundTint="@color/primary"
         android:layout_gravity="center"
         android:scaleType="fitCenter"
@@ -43,16 +42,32 @@
         app:fabCustomSize="80dp"
         app:tint="@color/white"/>
 
+    <!-- FloatingActionButton di pojok kanan bawah -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_add"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:backgroundTint="@color/primary"
+        android:scaleType="fitCenter"
+        android:elevation="8dp"
+        android:padding="8dp"
+        android:src="@drawable/ic_add"
+        app:maxImageSize="36dp"
+        app:tint="@color/white"
+        android:layout_gravity="end|bottom"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="112dp"/>
+
+    <!-- BottomNavigationView -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
         android:background="@color/transparent"
         app:itemIconTint="@color/white"
         app:itemTextColor="@color/white"
         app:labelVisibilityMode="labeled"
-        app:layout_anchor="@+id/bottomAppBar"
-        app:layout_anchorGravity="center"
-        app:menu="@menu/bottom_nav_menu" />
+        app:menu="@menu/bottom_nav_menu"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

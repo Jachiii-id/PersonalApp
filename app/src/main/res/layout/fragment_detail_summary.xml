@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_marginStart="24dp"
+    android:layout_marginEnd="24dp"
+    android:layout_marginTop="24dp"
+    tools:context=".money.DetailSummaryFragment">
+
+    <RelativeLayout
+        android:id="@+id/header_summary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_profile"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/image_profile"/>
+
+        <TextView
+            android:id="@+id/tv_summaryPage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginStart="16dp"
+            android:text="Catatan Keuangan"
+            android:layout_toRightOf="@+id/iv_profile"
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/montserrat_bold"
+            android:layout_gravity="center"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:id="@+id/tv_summaryName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_toRightOf="@id/iv_profile"
+            android:layout_below="@id/tv_summaryPage"
+            android:text="Ahmad Galih Nur Jati"
+            android:textSize="12sp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/montserrat_regular"
+            android:layout_gravity="center"
+            android:textAlignment="center"/>
+
+    </RelativeLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_cardInformation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/primary"
+        app:cardCornerRadius="12dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="16dp">
+
+            <ImageView
+                android:id="@+id/iv_listBills"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_list_bills"/>
+
+            <TextView
+                android:id="@+id/tv_date"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:text="9 Oktober 2025"
+                android:gravity="center"
+                android:textAlignment="viewEnd"
+                android:layout_toRightOf="@id/iv_listBills"/>
+
+            <TextView
+                android:id="@+id/tv_amount"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="10dp"
+                android:text="Rp. 20.000.000"
+                android:gravity="center"
+                android:fontFamily="@font/montserrat_bold"
+                android:textSize="36sp"
+                android:textColor="@color/white"
+                android:layout_below="@+id/iv_listBills"/>
+
+            <TextView
+                android:id="@+id/tv_income"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="24dp"
+                android:text="Income"
+                android:textColor="@color/white"
+                android:fontFamily="@font/montserrat_regular"
+                android:textSize="18sp"
+                android:layout_below="@id/tv_amount" />
+
+            <TextView
+                android:id="@+id/tv_incomeRecent"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Rp. 2,000,000"
+                android:textColor="@color/white"
+                android:fontFamily="@font/montserrat_bold"
+                android:textSize="18sp"
+                android:layout_below="@id/tv_income"/>
+
+            <TextView
+                android:id="@+id/tv_outcome"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="180dp"
+                android:gravity="center"
+                android:layout_marginTop="24dp"
+                android:text="Income"
+                android:textColor="@color/white"
+                android:fontFamily="@font/montserrat_regular"
+                android:textSize="18sp"
+                android:layout_below="@id/tv_amount" />
+
+            <TextView
+                android:id="@+id/tv_outcomeRecent"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="180dp"
+                android:gravity="center"
+                android:text="Rp. 2,000,000"
+                android:textColor="@color/white"
+                android:fontFamily="@font/montserrat_bold"
+                android:textSize="18sp"
+                android:layout_below="@id/tv_outcome"/>
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/tv_instrumenTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Instrumen"
+        android:fontFamily="@font/montserrat_bold"
+        android:textSize="24sp"
+        android:layout_gravity="center"
+        android:textColor="@color/black"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/Instrumen"
+        android:layout_width="match_parent"
+        android:layout_height="260dp"
+        tools:listitem="@layout/rv_instrument" />
+
+    <TextView
+        android:id="@+id/tv_reportTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Report"
+        android:fontFamily="@font/montserrat_bold"
+        android:textSize="24sp"
+        android:layout_gravity="center"
+        android:textColor="@color/black"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/DetailTransaction"
+        android:layout_width="match_parent"
+        android:layout_height="260dp"
+        tools:listitem="@layout/rv_income"/>
+
+</LinearLayout>

@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "937673631653",
+    "firebase_url": "https://mypersonalapp-25ef6-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "mypersonalapp-25ef6",
+    "storage_bucket": "mypersonalapp-25ef6.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:937673631653:android:102cc902d2a1efe04c2a4c",
+        "android_client_info": {
+          "package_name": "com.example.personalapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWhw_t9cEwgpi4p2U8CGuBKPJ8dPjeF1o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

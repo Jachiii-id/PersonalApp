@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">PersonalApp</string>
     <string name="money">Money</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="jenis_keuangan">
+        <item>Income</item>
+        <item>Outcome</item>
+    </string-array>
 </resources>
