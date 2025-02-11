@@ -44,55 +44,56 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cv_cardInformation"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:backgroundTint="@color/primary"
             app:cardCornerRadius="12dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_margin="16dp">
 
                 <ImageView
-                    android:id="@+id/iv_listBills"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@drawable/ic_list_bills"/>
+                    android:id="@+id/iv_moneyAnimation"
+                    android:layout_width="100dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/ic_moneyanimation"/>
 
                 <TextView
-                    android:id="@+id/tv_date"
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:fontFamily="@font/montserrat_regular"
-                    android:textColor="@color/white"
-                    android:textSize="12sp"
-                    android:text="9 Oktober 2025"
-                    android:gravity="center"
-                    android:textAlignment="viewEnd"
-                    android:layout_toRightOf="@id/iv_listBills"/>
-
-                <TextView
-                    android:id="@+id/tv_amount"
+                    android:id="@+id/tv_amountMoney"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_marginTop="10dp"
+                    android:layout_marginLeft="8dp"
                     android:text="Rp. 20.000.000"
                     android:fontFamily="@font/montserrat_bold"
-                    android:textSize="32sp"
+                    android:textSize="24sp"
                     android:textColor="@color/white"
-                    android:layout_below="@+id/iv_listBills"/>
+                    android:layout_toRightOf="@+id/iv_moneyAnimation"/>
 
                 <TextView
                     android:id="@+id/tv_status"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="Alhamdulillah uang banyak"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginLeft="8dp"
+                    android:text="Detail Tracking Pengeluaran"
                     android:textColor="@color/white"
                     android:fontFamily="@font/montserrat_medium"
-                    android:textSize="18sp"
-                    android:layout_below="@id/tv_amount" />
+                    android:textSize="12sp"
+                    android:layout_below="@id/tv_amountMoney"
+                    android:layout_toRightOf="@id/iv_moneyAnimation"/>
+
+                <ImageView
+                    android:id="@+id/iv_arrowdown"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginTop="5.5dp"
+                    android:layout_marginStart="4dp"
+                    android:src="@drawable/ic_arrowdown"
+                    android:layout_toRightOf="@id/tv_status"
+                    android:layout_below="@id/tv_amountMoney"/>
 
             </RelativeLayout>
 

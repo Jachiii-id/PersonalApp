@@ -5,5 +5,7 @@
     <color name="tertiary">#B4D4FF</color>
     <color name="black">#000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="warning">#EE6B8D</color>
+    <color name="brokenWhite">#FAF0E6</color>
     <color name="transparent">#00FFFFFF</color>
 </resources>

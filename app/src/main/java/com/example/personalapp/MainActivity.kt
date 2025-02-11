@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        replaceFragment(WorkFragment())  // Default fragment
+        replaceFragment(MoneyFragment())  // Default fragment
 
         binding.bottomNavigation.setOnItemSelectedListener { item ->
             when (item.itemId) {

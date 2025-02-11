@@ -3,12 +3,12 @@
     android:id="@+id/rv_outcomePage"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="20dp">
+    android:layout_marginTop="12dp">
 
     <ImageView
         android:id="@+id/iv_outcomeMoney"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:src="@drawable/ic_money_outcome"
         android:layout_marginRight="24dp"/>
 
@@ -18,51 +18,51 @@
         android:layout_height="wrap_content"
         android:text="Rp.200.000"
         android:fontFamily="@font/montserrat_bold"
-        android:textColor="@color/primary"
-        android:textSize="24sp"
+        android:textColor="@color/warning"
+        android:textSize="16sp"
         android:layout_toRightOf="@id/iv_outcomeMoney"
         android:layout_marginRight="24dp"/>
 
     <TextView
-        android:id="@+id/tv_detailPay"
+        android:id="@+id/tv_detailOutcomePay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Pengeluaran untuk apa?"
         android:fontFamily="@font/montserrat_light"
-        android:textSize="12sp"
+        android:textSize="10sp"
         android:textColor="@color/black"
         android:layout_below="@id/tv_outcomePay"
         android:layout_toRightOf="@id/iv_outcomeMoney"/>
 
     <TextView
-        android:id="@+id/tv_tanggalPay"
+        android:id="@+id/tv_tanggalOutcomePay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="Instrumen"
         android:fontFamily="@font/montserrat_light"
-        android:textSize="12sp"
+        android:textSize="10sp"
         android:textColor="@color/black"
         android:layout_alignParentRight="true"/>
 
     <TextView
-        android:id="@+id/tv_instrumenPay"
+        android:id="@+id/tv_instrumenOutcomePay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="4dp"
         android:text="Tanggal"
         android:fontFamily="@font/montserrat_light"
-        android:textSize="12sp"
+        android:textSize="10sp"
         android:textColor="@color/black"
         android:layout_alignParentRight="true"
-        android:layout_below="@id/tv_tanggalPay"/>
+        android:layout_below="@id/tv_tanggalOutcomePay"/>
 
     <View
         android:id="@+id/lineTransaction"
         android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_marginTop="12dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
         android:background="@color/primary"
-        android:layout_below="@+id/tv_detailPay"/>
+        android:layout_below="@+id/tv_detailOutcomePay"/>
 
 </RelativeLayout>

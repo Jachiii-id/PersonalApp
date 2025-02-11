@@ -1,21 +1,36 @@
 package com.example.personalapp.money
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.fragment.app.Fragment
 import com.example.personalapp.R
+import com.example.personalapp.databinding.ActivitySummaryBinding
 
 class SummaryActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivitySummaryBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_summary)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+        binding = ActivitySummaryBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        replaceFragment(SummaryFragment())
     }
+
+    private fun replaceFragment(fragment: Fragment) {
+        println("Mengganti fragment ke: ${fragment.javaClass.simpleName}")
+
+        // Menghindari penggantian fragment yang sama
+        val currentFragment = supportFragmentManager.findFragmentById(R.id.summaryLayout)
+        if (currentFragment?.javaClass == fragment.javaClass) {
+            println("Fragment sudah aktif, tidak perlu diganti")
+            return
+        }
+
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.summaryLayout, fragment)
+            .commit()
+    }
+
 }

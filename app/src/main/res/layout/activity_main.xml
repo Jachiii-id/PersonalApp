@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".MainActivity">
 
     <FrameLayout
@@ -16,21 +17,21 @@
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottomAppBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
         android:layout_gravity="bottom"
         android:backgroundTint="@color/primary"
         app:fabAlignmentMode="center"
         app:fabAnchorMode="cradle"
-        app:fabCradleMargin="20dp"
+        app:fabCradleMargin="16dp"
         app:fabCradleVerticalOffset="4dp"
-        app:fabCradleRoundedCornerRadius="16dp"/>
+        app:fabCradleRoundedCornerRadius="4dp"/>
 
     <!-- FloatingActionButton di tengah -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_margin="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="44dp"
         android:backgroundTint="@color/primary"
         android:layout_gravity="center"
         android:scaleType="fitCenter"
@@ -39,7 +40,7 @@
         android:src="@drawable/streamline_bag_dollar_solid"
         app:layout_anchor="@id/bottomAppBar"
         app:maxImageSize="36dp"
-        app:fabCustomSize="80dp"
+        app:fabCustomSize="74dp"
         app:tint="@color/white"/>
 
     <!-- FloatingActionButton di pojok kanan bawah -->
@@ -56,13 +57,13 @@
         app:tint="@color/white"
         android:layout_gravity="end|bottom"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="112dp"/>
+        android:layout_marginBottom="90dp"/>
 
     <!-- BottomNavigationView -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
         android:layout_gravity="bottom"
         android:background="@color/transparent"
         app:itemIconTint="@color/white"

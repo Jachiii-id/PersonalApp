@@ -5,53 +5,64 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.personalapp.ARG_PARAM1
-import com.example.personalapp.ARG_PARAM2
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.personalapp.R
+import com.example.personalapp.data.Money
+import com.google.firebase.firestore.FirebaseFirestore
 
-/**
- * A simple [Fragment] subclass.
- * Use the [SummaryFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class SummaryFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var instrumenAdapter: InstrumenAdapter
+    private val instrumentList = mutableListOf<Money>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_summary, container, false)
+        val view = inflater.inflate(R.layout.fragment_summary, container, false)
+
+        recyclerView = view.findViewById(R.id.instrumenTransaction)
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        instrumenAdapter = InstrumenAdapter(instrumentList)
+        recyclerView.adapter = instrumenAdapter
+
+        fetchInstrumen()
+
+        return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment SummaryFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            SummaryFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    private fun fetchInstrumen() {
+        val firestore = FirebaseFirestore.getInstance()
+
+        firestore.collection("transactions")
+            .get()
+            .addOnSuccessListener { documents ->
+                val transactions = mutableListOf<Money>()
+
+                for (document in documents) {
+                    val transaction = document.toObject(Money::class.java)
+                    transactions.add(transaction)
                 }
+
+                // Mengelompokkan transaksi berdasarkan instrumen
+                val groupedData = transactions.groupBy { it.instrumen }
+                    .mapValues { entry ->
+                        val pemasukan = entry.value.filter { it.jenis == "Pemasukan" }.sumOf { it.jumlah }
+                        val pengeluaran = entry.value.filter { it.jenis == "Pengeluaran" }.sumOf { it.jumlah }
+                        pemasukan - pengeluaran // Saldo akhir
+                    }
+                    .map { Money(it.key, "", it.value, "", "") }
+
+                // Memperbarui daftar yang ditampilkan di RecyclerView
+                instrumentList.clear()
+                instrumentList.addAll(groupedData)
+                instrumenAdapter.notifyDataSetChanged()
+            }
+            .addOnFailureListener { e ->
+                e.printStackTrace()
             }
     }
+
 }

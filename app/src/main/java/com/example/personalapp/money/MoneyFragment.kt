@@ -1,16 +1,25 @@
 package com.example.personalapp.money
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.example.personalapp.R
+import com.example.personalapp.data.Money
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import com.google.firebase.firestore.FirebaseFirestore
+import java.text.NumberFormat
+import java.util.Locale
 
 class MoneyFragment : Fragment() {
+
+    private lateinit var tabLayout: TabLayout
+    private lateinit var viewPager: ViewPager2
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -18,43 +27,63 @@ class MoneyFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_money, container, false)
 
-        val fragmentList = arrayListOf(
-            IncomeTransaction(),
-            OutcomeTransaction()
-        )
+        tabLayout = view.findViewById(R.id.tl_transaction)
+        viewPager = view.findViewById(R.id.vp_transactions)
 
-        val adapter = TransactionAdapter(
-            fragmentList,
-            requireActivity().supportFragmentManager,
-            lifecycle
-        )
+        // Set Adapter ke ViewPager2
+        viewPager.adapter = TransactionPagerAdapter(this)
 
-        val viewPager = view.findViewById<ViewPager2>(R.id.vp_transactions)
-        val tabLayout = view.findViewById<TabLayout>(R.id.tl_transaction)
-
-        viewPager.adapter = adapter
-
+        // Hubungkan TabLayout dengan ViewPager2
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
-            tab.text = if (position == 0) "Income" else "Outcome"
+            tab.text = when (position) {
+                0 -> "Income"
+                1 -> "Outcome"
+                else -> "Unknown"
+            }
         }.attach()
 
-        // Memastikan indikator aktif diterapkan dengan benar
-        tabLayout.setSelectedTabIndicator(R.drawable.tab_indicator)
+        val cardView: View = view.findViewById(R.id.cv_cardInformation)
+        cardView.setOnClickListener {
+            val intent = Intent(requireContext(), SummaryActivity::class.java)
+            startActivity(intent)
+        }
 
-        tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-            override fun onTabSelected(tab: TabLayout.Tab) {
-                println("Tab ${tab.text} selected")
-            }
-
-            override fun onTabUnselected(tab: TabLayout.Tab) {
-                println("Tab ${tab.text} unselected")
-            }
-
-            override fun onTabReselected(tab: TabLayout.Tab) {
-                println("Tab ${tab.text} reselected")
-            }
-        })
+        fetchAmount(view)
 
         return view
     }
+
+    private fun fetchAmount(view: View) {
+        val firestore = FirebaseFirestore.getInstance()
+
+        firestore.collection("transactions") // Pastikan collection nama benar
+            .get()
+            .addOnSuccessListener { documents ->
+                val transactions = mutableListOf<Money>()
+
+                for (document in documents) {
+                    val transaction = document.toObject(Money::class.java)
+                    transactions.add(transaction)
+                }
+
+                // Mengelompokkan transaksi berdasarkan instrumen dan menghitung saldo
+                val groupedData = transactions.groupBy { it.instrumen }
+                    .mapValues { entry ->
+                        val pemasukan = entry.value.filter { it.jenis == "Pemasukan" }.sumOf { it.jumlah }
+                        val pengeluaran = entry.value.filter { it.jenis == "Pengeluaran" }.sumOf { it.jumlah }
+                        pemasukan - pengeluaran // Saldo akhir
+                    }
+
+                // Menampilkan total saldo di TextView dengan format "Rp. 200.000"
+                val totalSaldo = groupedData.values.sum() // Jumlahkan saldo dari setiap instrumen
+                val formattedSaldo = NumberFormat.getNumberInstance(Locale("id", "ID")).format(totalSaldo)
+
+                val amount = view.findViewById<TextView>(R.id.tv_amountMoney)
+                amount?.text = "Rp $formattedSaldo"
+            }
+            .addOnFailureListener { e ->
+                e.printStackTrace()
+            }
+    }
+
 }

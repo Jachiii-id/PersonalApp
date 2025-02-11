@@ -1,12 +1,12 @@
 package com.example.personalapp.data
 
-import java.util.Date
+import com.google.firebase.Timestamp
 
 data class Money(
-    var id: String? = null,
-    var dates: Date? = null,
-    var money: Double? = null,
-    var jenis: String? = null,
-    var instrumen: String? = null,
-    var notes: String? = null
+    val instrumen: String = "",
+    val jenis: String = "",
+    val jumlah: Int = 0,  // Ubah ke Integer
+    val kategori: String = "",
+    val notes: String = "",
+    val tanggal: Timestamp? = null
 )
