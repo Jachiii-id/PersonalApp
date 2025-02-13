@@ -1,38 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/rv_instrumentPage"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginTop="20dp">
+    android:layout_marginTop="10dp">
 
     <ImageView
         android:id="@+id/iv_wallet"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:src="@drawable/ic_wallet"
-        android:layout_marginRight="24dp"/>
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_wallet"/>
 
     <TextView
         android:id="@+id/tv_nameInstrument"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="20dp"
         android:text="OVO"
         android:gravity="center"
         android:fontFamily="@font/montserrat_extrabold"
         android:textColor="@color/primary"
-        android:textSize="28sp"
+        android:textSize="24sp"
         android:layout_toRightOf="@id/iv_wallet"
         android:layout_marginRight="24dp"/>
 
     <TextView
         android:id="@+id/tv_instrumenPay"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
         android:text="Rp. 200,000"
         android:gravity="center"
-        android:layout_marginLeft="12dp"
+        android:layout_marginLeft="8dp"
         android:fontFamily="@font/montserrat_bold"
-        android:textSize="20sp"
+        android:textSize="16sp"
         android:textColor="@color/black"
         android:layout_toRightOf="@id/tv_nameInstrument"
         android:layout_alignParentRight="true"/>
@@ -40,8 +40,8 @@
     <View
         android:id="@+id/lineTransaction"
         android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_marginTop="12dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
         android:background="@color/primary"
         android:layout_below="@+id/iv_wallet"/>
 

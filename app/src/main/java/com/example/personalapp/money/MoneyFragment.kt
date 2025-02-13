@@ -69,8 +69,9 @@ class MoneyFragment : Fragment() {
                 // Mengelompokkan transaksi berdasarkan instrumen dan menghitung saldo
                 val groupedData = transactions.groupBy { it.instrumen }
                     .mapValues { entry ->
-                        val pemasukan = entry.value.filter { it.jenis == "Pemasukan" }.sumOf { it.jumlah }
-                        val pengeluaran = entry.value.filter { it.jenis == "Pengeluaran" }.sumOf { it.jumlah }
+                        // Filter berdasarkan jenis dan konversi jumlah ke Double
+                        val pemasukan = entry.value.filter { it.jenis == "Pemasukan" }.sumOf { it.jumlah?.toDouble() ?: 0.0 }
+                        val pengeluaran = entry.value.filter { it.jenis == "Pengeluaran" }.sumOf { it.jumlah?.toDouble() ?: 0.0 }
                         pemasukan - pengeluaran // Saldo akhir
                     }
 
@@ -85,5 +86,6 @@ class MoneyFragment : Fragment() {
                 e.printStackTrace()
             }
     }
+
 
 }

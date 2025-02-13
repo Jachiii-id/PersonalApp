@@ -10,12 +10,28 @@ import com.example.personalapp.data.Money
 import java.text.NumberFormat
 import java.util.Locale
 
-class InstrumenAdapter(private val instrumentList: List<Money>) :
-    RecyclerView.Adapter<InstrumenAdapter.ViewHolder>() {
+class InstrumenAdapter(
+    private var instrumentList: List<Money>,
+    private val onItemClick: (Money) -> Unit
+) : RecyclerView.Adapter<InstrumenAdapter.ViewHolder>() {
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val tvNameInstrumen: TextView = itemView.findViewById(R.id.tv_nameInstrument)
-        val tvPayInstrument: TextView = itemView.findViewById(R.id.tv_instrumenPay)
+    fun updateData(newData: List<Money>) {
+        instrumentList = newData
+        notifyDataSetChanged() // Memberitahukan RecyclerView untuk memperbarui data
+    }
+
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val tvNameInstrumen: TextView = itemView.findViewById(R.id.tv_nameInstrument)
+        private val tvPayInstrument: TextView = itemView.findViewById(R.id.tv_instrumenPay)
+
+        fun bind(money: Money) {
+            tvNameInstrumen.text = money.instrumen
+            tvPayInstrument.text = formatRupiah(money.jumlah ?: 0)
+
+            itemView.setOnClickListener {
+                onItemClick(money)
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -25,14 +41,14 @@ class InstrumenAdapter(private val instrumentList: List<Money>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val instrument = instrumentList[position]
-
-        val formatter = NumberFormat.getNumberInstance(Locale("id", "ID"))
-        val formattedAmount = formatter.format(instrument.jumlah)
-
-        holder.tvPayInstrument.text = "Rp. $formattedAmount"
-        holder.tvNameInstrumen.text = instrument.instrumen
+        val money = instrumentList[position]
+        holder.bind(money)
     }
 
     override fun getItemCount(): Int = instrumentList.size
+
+    private fun formatRupiah(amount: Int): String {
+        val formatter = NumberFormat.getNumberInstance(Locale("id", "ID"))
+        return "Rp. ${formatter.format(amount)}"
+    }
 }
