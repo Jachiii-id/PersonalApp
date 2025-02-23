@@ -16,7 +16,6 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 class SummaryFragment : Fragment() {
 
-    private lateinit var recyclerView: RecyclerView
     private lateinit var instrumenAdapter: InstrumenAdapter
     private lateinit var reportAdapter: ReportAdapter
     private val instrumentList = mutableListOf<Money>()
@@ -28,7 +27,6 @@ class SummaryFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_summary, container, false)
 
-        // Setup RecyclerView untuk laporan bulanan
         val reportRecyclerView: RecyclerView = view.findViewById(R.id.reportTransaction)
         reportRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         reportAdapter = ReportAdapter(transactions) { selectedReport ->
@@ -54,7 +52,7 @@ class SummaryFragment : Fragment() {
         val fragment = DetailSummaryFragment()
         val bundle = Bundle().apply {
             putString("filterType", filterType)
-            putParcelable("moneyData", money) // Mengirimkan objek Money yang telah diimplementasikan Parcelable
+            putParcelable("moneyData", money)
         }
         fragment.arguments = bundle
 

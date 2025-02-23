@@ -6,17 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.personalapp.R
 import com.example.personalapp.data.Money
 import com.example.personalapp.money.otherMoney.InstrumenAdapter
 import com.google.firebase.firestore.FirebaseFirestore
 import java.text.NumberFormat
-import java.util.Locale
+import java.util.*
 
 class DetailSummaryFragment : Fragment() {
 
-    private lateinit var recyclerView: RecyclerView
     private lateinit var instrumenAdapter: InstrumenAdapter
     private val transactions = mutableListOf<Money>()
 
@@ -26,7 +26,12 @@ class DetailSummaryFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_detail_summary, container, false)
 
-        recyclerView.adapter = instrumenAdapter
+        val instrumentRecyclerView: RecyclerView = view.findViewById(R.id.DetailInstrumenPage)
+        instrumentRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        instrumenAdapter = InstrumenAdapter(transactions, onItemClick = { selectedInstrument ->
+            // Handle item click here
+        })
+        instrumentRecyclerView.adapter = instrumenAdapter
 
         val selectedInstrument = arguments?.getParcelable<Money>("moneyData")?.instrumen
 
