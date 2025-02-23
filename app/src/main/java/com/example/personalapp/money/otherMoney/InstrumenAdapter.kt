@@ -35,7 +35,7 @@ class InstrumenAdapter(
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val tvNameInstrumen: TextView = itemView.findViewById(R.id.tv_nameInstrument)
-        private val tvPayInstrument: TextView = itemView.findViewById(R.id.tv_Pay)
+        private val tvPayInstrument: TextView = itemView.findViewById(R.id.tv_amountInstrumentPay)
 
         fun bind(money: Money) {
             tvNameInstrumen.text = money.instrumen
