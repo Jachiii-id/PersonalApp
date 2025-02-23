@@ -13,10 +13,10 @@
         android:theme="@style/Theme.PersonalApp"
         tools:targetApi="31">
         <activity
-            android:name=".money.SummaryActivity"
+            android:name=".money.summaryActivity.SummaryActivity"
             android:exported="false" />
         <activity
-            android:name=".money.InputMoneyActivity"
+            android:name=".money.otherMoney.InputMoneyActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

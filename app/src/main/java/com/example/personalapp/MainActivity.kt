@@ -3,13 +3,10 @@ package com.example.personalapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.personalapp.databinding.ActivityMainBinding
-import com.example.personalapp.money.InputMoneyActivity
-import com.example.personalapp.money.MoneyFragment
+import com.example.personalapp.money.otherMoney.InputMoneyActivity
+import com.example.personalapp.money.otherMoney.MoneyFragment
 import com.example.personalapp.personal.PersonalFragment
 import com.example.personalapp.work.WorkFragment
 

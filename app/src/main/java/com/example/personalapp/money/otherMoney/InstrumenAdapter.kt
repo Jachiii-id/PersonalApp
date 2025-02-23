@@ -1,4 +1,4 @@
-package com.example.personalapp.money
+package com.example.personalapp.money.otherMoney
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,28 +8,46 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.personalapp.R
 import com.example.personalapp.data.Money
 import java.text.NumberFormat
-import java.util.Locale
+import java.util.*
 
 class InstrumenAdapter(
-    private var instrumentList: List<Money>,
-    private val onItemClick: (Money) -> Unit
+    private var instrumenLis: List<Money>,
+    private val onItemClick: (Money) -> Unit,
+    private var isItemClickable: Boolean = true
 ) : RecyclerView.Adapter<InstrumenAdapter.ViewHolder>() {
 
+    private var groupedInstrumentList: List<Money> = emptyList()
+
     fun updateData(newData: List<Money>) {
-        instrumentList = newData
-        notifyDataSetChanged() // Memberitahukan RecyclerView untuk memperbarui data
+        val groupedData = newData.groupBy { it.instrumen }
+            .map { entry ->
+                val totalAmount = entry.value.sumOf { it.jumlah ?: 0 }
+                Money(instrumen = entry.key, jumlah = totalAmount)
+            }
+
+        groupedInstrumentList = groupedData
+        notifyDataSetChanged()
+    }
+
+    fun setItemClickable(clickable: Boolean) {
+        isItemClickable = clickable
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val tvNameInstrumen: TextView = itemView.findViewById(R.id.tv_nameInstrument)
-        private val tvPayInstrument: TextView = itemView.findViewById(R.id.tv_instrumenPay)
+        private val tvPayInstrument: TextView = itemView.findViewById(R.id.tv_Pay)
 
         fun bind(money: Money) {
             tvNameInstrumen.text = money.instrumen
             tvPayInstrument.text = formatRupiah(money.jumlah ?: 0)
 
-            itemView.setOnClickListener {
-                onItemClick(money)
+            // Handle item clickability
+            if (isItemClickable) {
+                itemView.setOnClickListener {
+                    onItemClick(money)
+                }
+            } else {
+                itemView.setOnClickListener(null)
             }
         }
     }
@@ -41,11 +59,11 @@ class InstrumenAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val money = instrumentList[position]
+        val money = groupedInstrumentList[position]
         holder.bind(money)
     }
 
-    override fun getItemCount(): Int = instrumentList.size
+    override fun getItemCount(): Int = groupedInstrumentList.size
 
     private fun formatRupiah(amount: Int): String {
         val formatter = NumberFormat.getNumberInstance(Locale("id", "ID"))

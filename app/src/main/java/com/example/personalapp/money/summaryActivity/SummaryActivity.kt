@@ -1,4 +1,4 @@
-package com.example.personalapp.money
+package com.example.personalapp.money.summaryActivity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

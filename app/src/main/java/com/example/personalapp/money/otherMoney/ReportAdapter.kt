@@ -1,4 +1,4 @@
-package com.example.personalapp.money
+package com.example.personalapp.money.otherMoney
 
 import android.view.LayoutInflater
 import android.view.View

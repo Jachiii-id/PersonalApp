@@ -1,4 +1,4 @@
-package com.example.personalapp.money
+package com.example.personalapp.money.summaryActivity
 
 import android.os.Bundle
 import android.util.Log
@@ -10,17 +10,17 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.personalapp.R
 import com.example.personalapp.data.Money
-import com.google.firebase.Timestamp
+import com.example.personalapp.money.otherMoney.InstrumenAdapter
+import com.example.personalapp.money.otherMoney.ReportAdapter
 import com.google.firebase.firestore.FirebaseFirestore
-import java.util.Date
 
 class SummaryFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var instrumenAdapter: InstrumenAdapter
-    private lateinit var reportAdapter: ReportAdapter // Pastikan reportAdapter dideklarasikan
+    private lateinit var reportAdapter: ReportAdapter
     private val instrumentList = mutableListOf<Money>()
-    private val transactions = mutableListOf<Money>() // Tambahkan daftar transaksi
+    private val transactions = mutableListOf<Money>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,12 +37,12 @@ class SummaryFragment : Fragment() {
         reportRecyclerView.adapter = reportAdapter
 
         // Setup RecyclerView untuk instrumen
-        recyclerView = view.findViewById(R.id.instrumenTransaction)
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        instrumenAdapter = InstrumenAdapter(instrumentList) { selectedInstrument ->
-            navigateToDetail("instrumen", selectedInstrument)
-        }
-        recyclerView.adapter = instrumenAdapter
+        val instrumentRecyclerView: RecyclerView = view.findViewById(R.id.instrumenTransaction)
+        instrumentRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        instrumenAdapter = InstrumenAdapter(instrumentList, onItemClick = { selectedInstrument ->
+            navigateToDetail("instrument", selectedInstrument)
+        }, isItemClickable = true)
+        instrumentRecyclerView.adapter = instrumenAdapter
 
         fetchInstrumen()
         fetchReport()
@@ -54,7 +54,7 @@ class SummaryFragment : Fragment() {
         val fragment = DetailSummaryFragment()
         val bundle = Bundle().apply {
             putString("filterType", filterType)
-            putParcelable("moneyData", money) // Mengirimkan objek Money utuh
+            putParcelable("moneyData", money) // Mengirimkan objek Money yang telah diimplementasikan Parcelable
         }
         fragment.arguments = bundle
 
@@ -70,36 +70,36 @@ class SummaryFragment : Fragment() {
         firestore.collection("transactions")
             .get()
             .addOnSuccessListener { documents ->
-                val transactions = mutableListOf<Money>()
+                // Initialize empty list
+                instrumentList.clear()
 
+                // Populate instrumentList with the fetched data
                 for (document in documents) {
                     val transaction = document.toObject(Money::class.java)
-                    transactions.add(transaction)
+                    instrumentList.add(transaction)
                 }
 
                 // Mengelompokkan transaksi berdasarkan instrumen
-                val groupedData = transactions.groupBy { it.instrumen }
+                val groupedData = instrumentList.groupBy { it.instrumen }
                     .mapValues { entry ->
+                        // Calculate total amount (saldo) for each instrument
                         val pemasukan = entry.value.filter { it.jenis == "Pemasukan" }.sumOf { it.jumlah ?: 0 }
                         val pengeluaran = entry.value.filter { it.jenis == "Pengeluaran" }.sumOf { it.jumlah ?: 0 }
-                        pemasukan - pengeluaran // Saldo akhir
+                        pemasukan - pengeluaran // Final saldo
                     }
                     .map { Money(it.key, "", it.value, "", "") }
 
-                // Memperbarui daftar yang ditampilkan di RecyclerView
-                instrumentList.clear()
-                instrumentList.addAll(groupedData)
-                instrumenAdapter.notifyDataSetChanged()
+                // Update the adapter with grouped data
+                instrumenAdapter.updateData(groupedData) // Pass grouped data to the adapter
             }
             .addOnFailureListener { e ->
                 e.printStackTrace()
             }
     }
 
+
     private fun fetchReport() {
         val firestore = FirebaseFirestore.getInstance()
-
-        Log.d("SummaryFragment", "Fetched ${transactions.size} transactions")
 
         firestore.collection("transactions")
             .get()
@@ -111,12 +111,11 @@ class SummaryFragment : Fragment() {
                     transactions.add(transaction)
                 }
 
-                reportAdapter.updateData(transactions)
+                reportAdapter.updateData(transactions) // Update data di adapter
             }
             .addOnFailureListener { e ->
                 e.printStackTrace()
             }
     }
-
-
 }
+

@@ -1,4 +1,4 @@
-package com.example.personalapp.money
+package com.example.personalapp.money.otherMoney
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,6 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.example.personalapp.R
 import com.example.personalapp.data.Money
+import com.example.personalapp.money.summaryActivity.SummaryActivity
+import com.example.personalapp.money.transactionActivity.TransactionPagerAdapter
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.firestore.FirebaseFirestore

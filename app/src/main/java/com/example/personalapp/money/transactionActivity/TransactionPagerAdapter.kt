@@ -1,4 +1,4 @@
-package com.example.personalapp.money
+package com.example.personalapp.money.transactionActivity
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -13,5 +13,4 @@ class TransactionPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragmen
             else -> throw IllegalStateException("Invalid position $position")
         }
     }
-
 }

@@ -1,4 +1,4 @@
-package com.example.personalapp.money
+package com.example.personalapp.money.transactionActivity
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,7 +15,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 class OutcomeTransaction : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var outcomeTransactionAdapter: OutcomeTransactionAdapter
+    private lateinit var mainTransactionAdapter: MainTransactionAdapter
     private val transactionList = mutableListOf<Money>()
 
     override fun onCreateView(
@@ -26,8 +26,8 @@ class OutcomeTransaction : Fragment() {
 
         recyclerView = view.findViewById(R.id.outcomeTransaction)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        outcomeTransactionAdapter = OutcomeTransactionAdapter(transactionList)
-        recyclerView.adapter = outcomeTransactionAdapter
+        mainTransactionAdapter = MainTransactionAdapter(transactionList)
+        recyclerView.adapter = mainTransactionAdapter
 
         fetchTransactions()
 
@@ -46,7 +46,7 @@ class OutcomeTransaction : Fragment() {
                     val transaction = document.toObject(Money::class.java)
                     transactionList.add(transaction)
                 }
-                outcomeTransactionAdapter.notifyDataSetChanged()
+                mainTransactionAdapter.notifyDataSetChanged()
             }
             .addOnFailureListener { e ->
                 e.printStackTrace()

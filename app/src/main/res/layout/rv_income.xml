@@ -14,7 +14,7 @@
         android:layout_marginRight="24dp"/>
 
     <TextView
-        android:id="@+id/tv_incomePay"
+        android:id="@+id/tv_textPay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Rp.200.000"
@@ -32,7 +32,7 @@
         android:fontFamily="@font/montserrat_light"
         android:textSize="10sp"
         android:textColor="@color/black"
-        android:layout_below="@id/tv_incomePay"
+        android:layout_below="@id/tv_textPay"
         android:layout_toRightOf="@id/iv_incomeMoney"/>
 
     <TextView
@@ -46,18 +46,19 @@
         android:textColor="@color/black"
         android:layout_alignParentRight="true"/>
 
+
     <TextView
         android:id="@+id/tv_tanggalPay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="Tanggal"
-        android:fontFamily="@font/montserrat_light"
-        android:textSize="10sp"
-        android:textColor="@color/black"
+        android:layout_below="@id/tv_instrumenPay"
         android:layout_alignParentRight="true"
-        android:layout_below="@id/tv_instrumenPay"/>
-
+        android:layout_marginTop="2dp"
+        android:layout_marginRight="0dp"
+        android:fontFamily="@font/montserrat_light"
+        android:text="Tanggal"
+        android:textColor="@color/black"
+        android:textSize="10sp" />
 
     <View
         android:id="@+id/lineTransaction"

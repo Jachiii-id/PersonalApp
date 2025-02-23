@@ -13,7 +13,7 @@
         android:layout_marginRight="24dp"/>
 
     <TextView
-        android:id="@+id/tv_outcomePay"
+        android:id="@+id/tv_textPay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Rp.200.000"
@@ -24,18 +24,18 @@
         android:layout_marginRight="24dp"/>
 
     <TextView
-        android:id="@+id/tv_detailOutcomePay"
+        android:id="@+id/tv_detailPay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Pengeluaran untuk apa?"
         android:fontFamily="@font/montserrat_light"
         android:textSize="10sp"
         android:textColor="@color/black"
-        android:layout_below="@id/tv_outcomePay"
+        android:layout_below="@id/tv_textPay"
         android:layout_toRightOf="@id/iv_outcomeMoney"/>
 
     <TextView
-        android:id="@+id/tv_tanggalOutcomePay"
+        android:id="@+id/tv_instrumenPay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -46,7 +46,7 @@
         android:layout_alignParentRight="true"/>
 
     <TextView
-        android:id="@+id/tv_instrumenOutcomePay"
+        android:id="@+id/tv_tanggalPay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -55,7 +55,7 @@
         android:textSize="10sp"
         android:textColor="@color/black"
         android:layout_alignParentRight="true"
-        android:layout_below="@id/tv_tanggalOutcomePay"/>
+        android:layout_below="@id/tv_instrumenPay"/>
 
     <View
         android:id="@+id/lineTransaction"
@@ -63,6 +63,6 @@
         android:layout_height="1dp"
         android:layout_marginTop="8dp"
         android:background="@color/primary"
-        android:layout_below="@+id/tv_detailOutcomePay"/>
+        android:layout_below="@+id/tv_tanggalPay"/>
 
 </RelativeLayout>
