@@ -11,15 +11,15 @@ import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
-class MainTransactionAdapter(private val transactionList: List<Money>) :
-    RecyclerView.Adapter<MainTransactionAdapter.ViewHolder>() {
+class MainTransactionAdapter(
+    private val transactionList: List<Money>
+) : RecyclerView.Adapter<MainTransactionAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View, val tvAmount: TextView, val tvDetail: TextView, val tvInstrumen: TextView, val tvTanggal: TextView) :
         RecyclerView.ViewHolder(itemView)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view: View
-        // Tentukan layout berdasarkan jenis transaksi
         view = if (viewType == R.layout.rv_income) {
             LayoutInflater.from(parent.context).inflate(R.layout.rv_income, parent, false)
         } else {

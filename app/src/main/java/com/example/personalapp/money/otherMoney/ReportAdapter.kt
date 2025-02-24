@@ -21,9 +21,12 @@ class ReportAdapter(private val transactionList: List<Money>,
 
         fun bind(money: Money) {
             tvMonths.text = money.getFormattedDate()
-            itemView.setOnClickListener { onItemClick(money) }
+            itemView.setOnClickListener {
+                onItemClick(money)  // Handle item click
+            }
         }
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -37,7 +40,6 @@ class ReportAdapter(private val transactionList: List<Money>,
         holder.bind(uniqueMonthsList[position])
     }
 
-    // Fungsi untuk memperbarui data
     fun updateData(newList: List<Money>) {
         val sdf = SimpleDateFormat("MMMM yyyy", Locale.getDefault())
         val monthsSet = linkedSetOf<String>() // Set to store unique month-year combinations
@@ -58,4 +60,5 @@ class ReportAdapter(private val transactionList: List<Money>,
         uniqueMonthsList = uniqueTransactions  // Update the list with unique transactions
         notifyDataSetChanged()  // Refresh RecyclerView
     }
+
 }

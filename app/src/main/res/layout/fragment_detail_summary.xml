@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:layout_marginStart="16dp"
-            android:text="Catatan Keuangan"
+            android:text="Detail Catatan Keuangan"
             android:layout_toRightOf="@+id/iv_profile"
             android:textSize="20sp"
             android:textColor="@color/black"
@@ -72,12 +72,12 @@
                 android:src="@drawable/ic_moneyanimation" />
 
             <TextView
-                android:id="@+id/tv_amount"
+                android:id="@+id/tv_amountDetailSummary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="14dp"
+                android:layout_marginStart="16dp"
                 android:text="Rp. 20.000.000"
-                android:gravity="center"
                 android:fontFamily="@font/montserrat_bold"
                 android:textSize="24sp"
                 android:textColor="@color/white"
@@ -85,40 +85,41 @@
 
             <ImageView
                 android:id="@+id/iv_incomeAnimation"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:src="@drawable/ic_money_income"
                 android:layout_marginTop="24dp"
-                android:layout_below="@id/tv_amount" />
+                android:layout_marginStart="12dp"
+                android:layout_below="@id/tv_amountDetailSummary" />
 
             <TextView
-                android:id="@+id/tv_incomeRecent"
+                android:id="@+id/tv_incomeDetailRecent"
                 android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:layout_marginTop="24dp"
+                android:layout_height="30dp"
+                android:layout_below="@id/tv_amountDetailSummary"
                 android:layout_marginStart="8dp"
+                android:layout_marginTop="24dp"
+                android:layout_toRightOf="@+id/iv_incomeAnimation"
+                android:fontFamily="@font/montserrat_bold"
                 android:gravity="center"
                 android:text="Rp. 2,000,000"
                 android:textColor="@color/white"
-                android:fontFamily="@font/montserrat_bold"
-                android:textSize="12.5sp"
-                android:layout_below="@id/tv_amount"
-                android:layout_toRightOf="@+id/iv_incomeAnimation"/>
+                android:textSize="12.5sp" />
 
             <ImageView
                 android:id="@+id/iv_outcomeAnimation"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_marginTop="24dp"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="48dp"
                 android:src="@drawable/ic_money_outcome"
-                android:layout_toRightOf="@+id/tv_incomeRecent"
-                android:layout_below="@id/tv_amount" />
+                android:layout_toRightOf="@+id/tv_incomeDetailRecent"
+                android:layout_below="@id/tv_amountDetailSummary" />
 
             <TextView
-                android:id="@+id/tv_outcomeRecent"
+                android:id="@+id/tv_outcomeDetailRecent"
                 android:layout_width="wrap_content"
-                android:layout_height="50dp"
+                android:layout_height="30dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginStart="8dp"
                 android:gravity="center"
@@ -126,7 +127,7 @@
                 android:textColor="@color/white"
                 android:fontFamily="@font/montserrat_bold"
                 android:textSize="12.5sp"
-                android:layout_below="@+id/tv_amount"
+                android:layout_below="@+id/tv_amountDetailSummary"
                 android:layout_toRightOf="@id/iv_outcomeAnimation"/>
         </RelativeLayout>
 
@@ -154,16 +155,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Report"
+        android:text="Transaction"
         android:fontFamily="@font/montserrat_bold"
         android:textSize="24sp"
         android:layout_gravity="center"
         android:textColor="@color/black"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/DetailTransaction"
+        android:id="@+id/DetailTransactionPage"
         android:layout_width="match_parent"
-        android:layout_height="260dp"
+        android:layout_height="wrap_content"
         tools:listitem="@layout/rv_income"/>
 
 </LinearLayout>
