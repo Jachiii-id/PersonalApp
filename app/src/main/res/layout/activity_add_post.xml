@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/addPost"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".personal.AddPostActivity">
+
+    <!-- Gambar yang Dipilih -->
+    <ImageView
+        android:id="@+id/iv_selectedImage"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/iv_profile"
+        android:background="@android:color/darker_gray"/>
+
+    <!-- Tombol Pilih Gambar -->
+    <Button
+        android:id="@+id/btn_chooseImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pilih Gambar"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"/>
+
+    <!-- Input Caption -->
+    <EditText
+        android:id="@+id/et_caption"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Tambahkan caption..."
+        android:padding="10dp"
+        android:background="@android:color/white"
+        android:elevation="2dp"
+        android:layout_marginTop="16dp"/>
+
+    <!-- Tombol Bagikan -->
+    <Button
+        android:id="@+id/btn_share"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bagikan"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"/>
+
+</LinearLayout>

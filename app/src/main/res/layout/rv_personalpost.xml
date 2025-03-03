@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/iv_imageProfile"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="16dp"
+        android:src="@drawable/image_profile"/>
+
+    <TextView
+        android:id="@+id/tv_namePersonal"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="Ahmad Galih Nur Jati"
+        android:layout_margin="16dp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/montserrat_bold"
+        android:textSize="16sp"
+        android:layout_toRightOf="@+id/iv_imageProfile"
+        android:gravity="center_vertical"/>
+
+    <ImageView
+        android:id="@+id/iv_imagePost"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/image_profile"
+        android:layout_below="@id/tv_namePersonal"/>
+
+    <TextView
+        android:id="@+id/tv_nameCaption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="Jachiii"
+        android:fontFamily="@font/montserrat_bold"
+        android:textSize="14sp"
+        android:textColor="@color/black"
+        android:layout_below="@id/iv_imagePost"/>
+
+    <TextView
+        android:id="@+id/tv_caption"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-12dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="Contoh Caption Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum "
+        android:fontFamily="@font/montserrat_regular"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        android:layout_below="@id/tv_nameCaption"/>
+
+    <TextView
+        android:id="@+id/tv_datePost"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="1 Oktober 2025"
+        android:fontFamily="@font/montserrat_light"
+        android:textSize="10sp"
+        android:textColor="@color/black"
+        android:layout_below="@id/tv_caption"/>
+
+    <View
+        android:id="@+id/v_dividerPost"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="25dp"
+        android:layout_below="@id/tv_datePost"
+        android:background="@color/tertiary"/>
+
+</RelativeLayout>

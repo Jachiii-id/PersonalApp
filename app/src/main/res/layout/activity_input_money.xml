@@ -159,7 +159,6 @@
         android:textColor="@color/black"
         android:textSize="16sp" />
 
-    <!-- Notes -->
     <TextView
         android:id="@+id/tv_notes"
         android:layout_width="match_parent"

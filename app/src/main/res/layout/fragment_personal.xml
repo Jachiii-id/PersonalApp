@@ -1,19 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="personal.PersonalFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Personal Page"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <!-- Header -->
+    <LinearLayout
+        android:id="@+id/headerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="20dp"
+        android:orientation="horizontal">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="Personal Page"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/montserrat_bold"
+            android:layout_gravity="center"/>
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="180dp"
+            android:src="@drawable/ic_burger"
+            android:layout_gravity="center_vertical"/>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/iv_profile"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="75dp"
+        android:layout_marginStart="8dp"
+        android:src="@drawable/iv_profile"
+        android:elevation="1dp" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_profile"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:backgroundTint="@color/primary"
+        android:layout_below="@id/headerLayout"
+        android:layout_marginTop="26dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp">
+
+        <RelativeLayout
+            android:id="@+id/profileLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_namePersonal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="150dp"
+                android:layout_marginTop="28dp"
+                android:layout_marginEnd="16dp"
+                android:text="Jachiii"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="center"/>
+
+            <Button
+                android:id="@+id/btn_editProfile"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginStart="150dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginTop="8dp"
+                android:text="Edit Profile"
+                android:textSize="8sp"
+                android:textColor="@color/white"
+                android:background="@drawable/button_border"
+                android:layout_below="@id/tv_namePersonal"
+                app:backgroundTint="@null"/>
+
+            <ImageView
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:layout_marginStart="-86dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/ic_arrow"
+                android:layout_toRightOf="@id/btn_editProfile"
+                android:layout_below="@id/tv_namePersonal"/>
+
+        </RelativeLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <Button
+        android:id="@+id/btn_addPost"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="16dp"
+        android:layout_below="@id/card_profile"
+        android:text="Add Post"
+        android:textColor="@color/primary"
+        android:fontFamily="@font/montserrat_bold"
+        android:background="@drawable/common_button_border"
+        app:backgroundTint="@null"/>
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="256dp"
+        android:layout_marginStart="-150dp"
+        android:src="@drawable/iv_arrow"
+        android:layout_toRightOf="@+id/btn_addPost"
+        android:elevation="5dp"/>
+
+    <View
+        android:id="@+id/lineProfile"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="16dp"
+        android:layout_below="@id/btn_addPost"
+        android:background="@color/tertiary"/>
+
+    <!-- RecyclerView -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_personalPage1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/lineProfile"
+        android:layout_marginTop="0dp"
+        tools:listitem="@layout/rv_personalpage" />
+
+</RelativeLayout>

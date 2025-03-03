@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rv_personalPage"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/iv_image1"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:src="@drawable/image_profile"
+        android:scaleType="centerCrop"/>
+
+    <ImageView
+        android:id="@+id/iv_image2"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:src="@drawable/image_profile"
+        android:scaleType="centerCrop"/>
+
+    <ImageView
+        android:id="@+id/iv_image3"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:src="@drawable/image_profile"
+        android:scaleType="centerCrop"/>
+
+</LinearLayout>
